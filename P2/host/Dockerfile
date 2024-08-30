@@ -5,4 +5,4 @@ COPY		configure_host.sh .
 RUN			chmod +x configure_host.sh
 
 # ${HOST_IP} set up by .gns3
-ENTRYPOINT	./configure_host.sh
+ENTRYPOINT	["./configure_host.sh"]
