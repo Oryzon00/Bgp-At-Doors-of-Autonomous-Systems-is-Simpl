@@ -1,6 +1,6 @@
 HOST_NBR=$(hostname | rev | cut -d"-" -f1)
 
-source /root/env/leaf_${HOST_NBR} # ?????
+source /root/env/leaf_${HOST_NBR}.env # ?????
 
 env > /root/env_of_device.txt
 

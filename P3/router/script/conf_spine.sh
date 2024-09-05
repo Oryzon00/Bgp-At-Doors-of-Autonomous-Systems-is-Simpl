@@ -1,4 +1,4 @@
-source /root/env/leaf_1
+source /root/env/spine.env
 
 env > /root/env_of_device.txt
 
