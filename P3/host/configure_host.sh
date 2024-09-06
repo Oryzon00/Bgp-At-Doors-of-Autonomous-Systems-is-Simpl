@@ -15,6 +15,6 @@ IP=30.1.1.${HOST_NBR}
 
 /sbin/ip addr add ${IP}/24 dev ${DEV}
 
-echo ${IP} > check_file
+echo ${IP} > /root/check_ip.txt
 
 exec /bin/sh
