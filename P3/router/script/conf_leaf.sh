@@ -5,16 +5,16 @@ source /root/env/leaf_${HOST_NBR}.env
 env > /root/env_of_device.txt
 
 cat > /root/script/net_script.sh <<- EOF
-	ip link add br0 type bridge
+	/sbin/ip link add name br0 type bridge
 
 	# Start device br0
-	ip link set dev br0 up
+	/sbin/ip link set dev br0 up
 
 	# create vxlan10
-	ip link add vxlan10 type vxlan id 10 dstport 4789
+	/sbin/ip link add name vxlan10 type vxlan id 10 dstport 4789
 
 	# Start device vxlan10
-	ip link set dev vxlan10 up
+	/sbin/ip link set dev vxlan10 up
 
 	#connect interface
 	brctl addif br0 vxlan10
@@ -23,29 +23,29 @@ EOF
 
 cat  > /etc/frr/frr.conf <<- EOF
  hostname router_ajung_p3-${HOST_NBR}
-no ipv6 forwarding
+ no ipv6 forwarding
  !
  interface ${ROUTER_DEV} 
   ip address ${IP}/30 
   ip ospf area 0
  !
  interface lo
-	ip address ${LO}/32 
-	ip ospf area 0
+  ip address ${LO}/32 
+  ip ospf area 0
  !
  router bgp 1
- neighbor ${RR_IP} remote-as 1 
- neighbor ${RR_IP} update-source lo 
+  neighbor ${RR_IP} remote-as 1 
+  neighbor ${RR_IP} update-source lo 
  !
  address-family l2vpn evpn 
- neighbor ${RR_IP} activate 
- advertise-all-vni 
+  neighbor ${RR_IP} activate 
+  advertise-all-vni 
  exit-address-family
  !
  router ospf
  !
 exit
-EOF 
+EOF
 
 bash /root/script/net_script.sh
 
