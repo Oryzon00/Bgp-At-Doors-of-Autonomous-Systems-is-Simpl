@@ -2,8 +2,8 @@ source /root/env/spine.env
 
 env > /root/env_of_device.txt
 
-cat <<- eof > /etc/frr/frr.conf
-hostname routeur_${USER}_1 # ?????
+cat <<- EOF > /etc/frr/frr.conf
+hostname routeur_ajung_p3-1
 !
 interface eth0
 ip address 10.1.1.1/30
@@ -33,8 +33,8 @@ router ospf
 !
 line vty
 !
-exit # ?????
-eof # ?????
+exit
+EOF
 
 # tini -> minimal init process
 # /usr/lib/frr/docker-start -> process recommended to start the container
